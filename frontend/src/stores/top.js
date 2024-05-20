@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 
-import testfiles from "@/assets/test.json";
+import top from "@/assets/top.json";
+import players from "@/assets/players.json"
 
 const STORE_NAME = "top";
 
@@ -23,11 +24,20 @@ function shuffle(targetArray) {
   return result;
 }
 
+function compareTrueFlase(a, b) {
+  if (b.value == true) return -1;
+
+  if (a.value = true) return 1;
+
+  return 0;
+
+}
+
 export const useTopStore = defineStore(STORE_NAME, {
   state: () => ({
     currentGame:
       localStorage.getItem("currentGame") === null
-        ? shuffle(testfiles)
+        ? shuffle(top)
         : JSON.parse(localStorage.getItem("currentGame")),
     firstHalf:
       localStorage.getItem("firstHalf") === null
@@ -56,7 +66,11 @@ export const useTopStore = defineStore(STORE_NAME, {
     winner:
       localStorage.getItem("winner") == null
         ? null
-        : JSON.parse(localStorage.getItem("winner"))
+        : JSON.parse(localStorage.getItem("winner")),
+    currentPlayers:
+      localStorage.getItem("currentPlayers") == null
+        ? structuredClone(players)
+        : JSON.parse(localStorage.getItem("currentPlayers")),
   }),
 
   actions: {
@@ -69,6 +83,7 @@ export const useTopStore = defineStore(STORE_NAME, {
       localStorage.setItem("roundNumber", this.roundNumber);
       localStorage.setItem("isRoundStart", this.isRoundStart);
       localStorage.setItem("winner", JSON.stringify(this.winner));
+      localStorage.setItem("currentPlayers", JSON.stringify(this.currentPlayers));
     },
 
     startRound() {
@@ -83,16 +98,36 @@ export const useTopStore = defineStore(STORE_NAME, {
       
       this.isRoundStart = true;
 
+      this.currentPlayers = structuredClone(players);
+
       this.saveState();
     },
 
     updateArray(option) {
-      if (option == -1) return
+      if (option == -1) return;
+
+      let imageId;
 
       if (option == 1) {
         this.nextRound.push(this.firstHalf[0]);
+        imageId = this.secondHalf[0].id;
       } else {
         this.nextRound.push(this.secondHalf[0]);
+        imageId = this.firstHalf[0].id;
+      }
+      
+      for (var playerId in this.currentPlayers) {
+
+        for (var id in this.currentPlayers[playerId].images) {
+
+          if (this.currentPlayers[playerId].images[id].id == imageId) {
+            this.currentPlayers[playerId].images[id].value = false;
+            
+            this.currentPlayers[playerId].images.sort((a, b) => a.value > b.value ? 1 : -1)
+
+          }
+        }
+        
       }
 
       this.firstHalf.shift();

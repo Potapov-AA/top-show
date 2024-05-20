@@ -1,5 +1,7 @@
 <script setup>
 import CardComponent from "@/components/CardComponent.vue";
+import PlayersComponent from "@/components/PlayersComponent.vue";
+
 
 import { useTopStore } from "@/stores/top";
 import { onBeforeMount } from "vue";
@@ -21,7 +23,10 @@ onBeforeMount(() => {
     <div class="text-center mt-4 mb-4">
       <h1 class="h1">ТОП ШОУ</h1>
       <div v-if="useTopStore().winner == null">
-        {{ useTopStore().roundNumber }} / {{ useTopStore().roundSize }}
+        <div>
+          {{ useTopStore().roundNumber }} / {{ useTopStore().roundSize }}
+        </div>
+        <PlayersComponent/>
       </div>
       <div v-else>ПОБЕДИТЕЛЬ</div>
     </div>

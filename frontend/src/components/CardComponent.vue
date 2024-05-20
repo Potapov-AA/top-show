@@ -24,7 +24,6 @@ function getImage(imageName) {
       :src="getImage(props.imageName)"
       @click="useTopStore().updateArray(props.half)"
     />
-    ffffssss
   </v-card>
 </template>
 
