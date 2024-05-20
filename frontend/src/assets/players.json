@@ -1,0 +1,41 @@
+{
+    "1": {
+        "id": 1,
+        "playerName": "Васек",
+        "images": [
+            {"id" : 1, "value" : true},
+            {"id" : 2, "value" : true},
+            {"id" : 3, "value" : true}
+        ]
+    },
+
+    "2": {
+        "id": 2,
+        "playerName": "Петек",
+        "images": [
+            {"id" : 4, "value" : true},
+            {"id" : 5, "value" : true},
+            {"id" : 6, "value" : true}
+        ]
+    },
+
+    "3": {
+        "id": 3,
+        "playerName": "Гришок",
+        "images": [
+            {"id" : 7, "value" : true},
+            {"id" : 8, "value" : true},
+            {"id" : 9, "value" : true}
+        ]
+    },
+
+    "4": {
+        "id": 4,
+        "playerName": "Горшок",
+        "images": [
+            {"id" : 10, "value" : true},
+            {"id" : 12, "value" : true},
+            {"id" : 13, "value" : true}
+        ]
+    }
+}
