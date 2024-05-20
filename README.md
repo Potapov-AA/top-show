@@ -8,6 +8,12 @@
 
 0.0.1 - alpha
 
+
+## Функционал
+
+На текущий момент доступен только один топ по фильмам.
+Есть возможность начать новую игру после окончания предыдущей.
+
 ## Рекомендации по IDE
 
 Минимум: [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
