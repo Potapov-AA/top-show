@@ -116,15 +116,12 @@ export const useTopStore = defineStore(STORE_NAME, {
         imageId = this.firstHalf[0].id;
       }
       
+      // Обновление топов игроков
       for (var playerId in this.currentPlayers) {
-
         for (var id in this.currentPlayers[playerId].images) {
-
           if (this.currentPlayers[playerId].images[id].id == imageId) {
-            this.currentPlayers[playerId].images[id].value = false;
-            
+            this.currentPlayers[playerId].images[id].value = false;         
             this.currentPlayers[playerId].images.sort((a, b) => a.value > b.value ? 1 : -1)
-
           }
         }
         
@@ -135,10 +132,26 @@ export const useTopStore = defineStore(STORE_NAME, {
 
       if (this.firstHalf.length == 0 || this.secondHalf.length == 0) {
 
+        // Проверка на наличие победителя
         if (this.nextRound.length == 1) {
 
-          this.winner = this.nextRound[0];
+          let winnerName = null;
+          imageId = this.nextRound[0].id;
 
+          for (var playerId in this.currentPlayers) {
+            for (var id in this.currentPlayers[playerId].images) {
+              if (this.currentPlayers[playerId].images[id].id == imageId) {
+
+                winnerName = this.currentPlayers[playerId].playerName;
+              }
+            }
+            
+          }
+
+          this.winner = {
+            "top" : this.nextRound[0],
+            "player" : winnerName
+          }
         } else {
           this.nextRound = shuffle(this.nextRound);
 

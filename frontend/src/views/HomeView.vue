@@ -28,7 +28,14 @@ onBeforeMount(() => {
         </div>
         <PlayersComponent/>
       </div>
-      <div v-else>ПОБЕДИТЕЛЬ</div>
+      <div v-else>
+        <div v-if="useTopStore().winner.player == null">
+          ПОБЕДИТЕЛЬ ИГРА
+        </div>
+        <div v-else>
+          ПОБЕДИТЕЛЬ {{ useTopStore().winner.player }}
+        </div>
+      </div>
     </div>
     <div
       v-if="useTopStore().winner == null"
@@ -50,8 +57,8 @@ onBeforeMount(() => {
     </div>
     <div v-else class="d-flex justify-center align-center flex-column">
       <CardComponent
-        :name="useTopStore().winner.name"
-        :image-name="useTopStore().winner.imageName"
+        :name="useTopStore().winner.top.name"
+        :image-name="useTopStore().winner.top.imageName"
         :half="-1"
       />
       <v-btn @click="useTopStore().startRound()" class="mt-5"
