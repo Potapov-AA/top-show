@@ -87,6 +87,8 @@ export const useTopStore = defineStore(STORE_NAME, {
     },
 
     updateArray(option) {
+      if (option == -1) return
+
       if (option == 1) {
         this.nextRound.push(this.firstHalf[0]);
       } else {
