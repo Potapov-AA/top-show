@@ -5,7 +5,9 @@
         "images": [
             {"id" : 1, "value" : true},
             {"id" : 2, "value" : true},
-            {"id" : 3, "value" : true}
+            {"id" : 3, "value" : true},
+            {"id" : 4, "value" : true},
+            {"id" : 5, "value" : true}
         ]
     },
 
@@ -15,7 +17,9 @@
         "images": [
             {"id" : 4, "value" : true},
             {"id" : 5, "value" : true},
-            {"id" : 6, "value" : true}
+            {"id" : 6, "value" : true},
+            {"id" : 7, "value" : true},
+            {"id" : 8, "value" : true}
         ]
     },
 
@@ -25,7 +29,9 @@
         "images": [
             {"id" : 7, "value" : true},
             {"id" : 8, "value" : true},
-            {"id" : 9, "value" : true}
+            {"id" : 9, "value" : true},
+            {"id" : 1, "value" : true},
+            {"id" : 2, "value" : true}
         ]
     },
 
@@ -35,7 +41,9 @@
         "images": [
             {"id" : 10, "value" : true},
             {"id" : 12, "value" : true},
-            {"id" : 13, "value" : true}
+            {"id" : 13, "value" : true},
+            {"id" : 1, "value" : true},
+            {"id" : 2, "value" : true}
         ]
     }
 }

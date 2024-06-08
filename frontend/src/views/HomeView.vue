@@ -1,4 +1,5 @@
 <script setup>
+import HeaderComponent from "@/components/HeaderComponent.vue"; 
 import CardComponent from "@/components/CardComponent.vue";
 import PlayersComponent from "@/components/PlayersComponent.vue";
 
@@ -19,14 +20,17 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="h-screen d-flex flex-column">
+  <div class="background h-screen d-flex flex-column">
+    <HeaderComponent/>
+
+
     <div class="text-center mt-4 mb-4">
       <h1 class="h1">ТОП ШОУ</h1>
       <div v-if="useTopStore().winner == null">
         <div>
           {{ useTopStore().roundNumber }} / {{ useTopStore().roundSize }}
         </div>
-        <PlayersComponent/>
+        <!-- <PlayersComponent/> -->
       </div>
       <div v-else>
         <div v-if="useTopStore().winner.player == null">
@@ -67,3 +71,9 @@ onBeforeMount(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+  .background {
+    background: linear-gradient(to bottom left, #32A0D1, #27AC99 62%, #C8C748);
+  }
+</style>
