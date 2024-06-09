@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 
 import top from "@/assets/top.json";
 import players from "@/assets/players.json"
+import top_presenter from "@/assets/top_presenter.json"
 
 const STORE_NAME = "top";
 
@@ -71,6 +72,10 @@ export const useTopStore = defineStore(STORE_NAME, {
       localStorage.getItem("currentPlayers") == null
         ? structuredClone(players)
         : JSON.parse(localStorage.getItem("currentPlayers")),
+    topPresenter:
+      localStorage.getItem("topPresenter") == null
+        ? structuredClone(top_presenter)
+        : JSON.parse(localStorage.getItem("topPresenter")),
   }),
 
   actions: {
@@ -84,6 +89,7 @@ export const useTopStore = defineStore(STORE_NAME, {
       localStorage.setItem("isRoundStart", this.isRoundStart);
       localStorage.setItem("winner", JSON.stringify(this.winner));
       localStorage.setItem("currentPlayers", JSON.stringify(this.currentPlayers));
+      localStorage.setItem("topPresenter", JSON.stringify(this.topPresenter));
     },
 
     startRound() {
@@ -125,6 +131,11 @@ export const useTopStore = defineStore(STORE_NAME, {
           }
         }
         
+      }
+
+      // Проврека топа ведущего
+      if (this.topPresenter.id == imageId) {
+        this.topPresenter.value = false;
       }
 
       this.firstHalf.shift();

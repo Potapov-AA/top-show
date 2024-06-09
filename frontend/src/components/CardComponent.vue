@@ -10,10 +10,52 @@ const props = defineProps({
 function getImage(imageName) {
   return new URL("../assets/images/" + imageName + ".jpg", import.meta.url).href;
 }
+
+function updateTop() {
+
+  if (props.half == 1) {
+
+    var element1 = document.getElementById('top-card-1');
+    element1.className += ' animation-win-1';
+
+    var element2 = document.getElementById('top-card-2');
+    element2.className += ' animation-hiden';
+    
+
+    setTimeout(() => { 
+      useTopStore().updateArray(props.half);
+      element1.className = 'animation-visible';
+      element2.className = 'animation-visible';
+    }, 4000);
+
+    setTimeout(() => {
+      element1.className = '';
+      element2.className = '';
+    }, 5000);
+  } else {
+
+    var element1 = document.getElementById('top-card-2');
+    element1.className += ' animation-win-2';
+
+    var element2 = document.getElementById('top-card-1');
+    element2.className += ' animation-hiden';
+
+    setTimeout(() => { 
+      useTopStore().updateArray(props.half);
+      element1.className = 'animation-visible';
+      element2.className = 'animation-visible';
+    }, 4000);
+
+    setTimeout(() => {
+      element1.className = '';
+      element2.className = '';
+    }, 5000);
+  }
+}
 </script>
 
 <template>
-  <div class="border" style="height: 74vh;"> 
+  <div :id="'top-card-' + props.half" class="" style="height: 74vh;"> 
     <div class="top-title-block" style="height: 6%;">
       <p class="text-top-title" align="center">{{ props.name }}</p>
     </div>
@@ -21,7 +63,7 @@ function getImage(imageName) {
       <v-img
         aspect-ratio="1/1"
         :src="getImage(props.imageName)"
-        @click="useTopStore().updateArray(props.half)"
+        @click="updateTop()"
       />
     </div>
   </div>
@@ -51,6 +93,69 @@ function getImage(imageName) {
   border-radius: 0px 0px 60px 60px;
   background: white;
   box-shadow: 5px 10px 6px 1px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+@keyframes go_right {
+    from {
+      left: 0px;
+    }
+    to {
+      left: calc(63%);
+    }
+  }
+
+.animation-win-1 {
+  animation: go_right 3s forwards, hidden 1s forwards;
+  animation-delay: 0s, 3s;
+  position: relative;
+}
+
+@keyframes go_left {
+  from {
+      right: 0px;
+    }
+    to {
+      right: calc(63%);
+    }
+}
+
+.animation-win-2 {
+  animation: go_left 3s forwards, hidden 1s forwards;
+  animation-delay: 0s, 3s;
+  position: relative;
+}
+
+@keyframes hidden {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.animation-hiden {
+  animation: hidden 1s;
+  animation-fill-mode: forwards;
+  position: relative;
+}
+
+@keyframes visible {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.animation-visible {
+  animation: visible 2s;
   position: relative;
 }
 </style>

@@ -12,7 +12,7 @@ const publicPath = import.meta.env.BASE_URL
         <v-spacer/>
         <v-col
             cols="2"
-            class="border d-flex align-center"
+            class="d-flex align-center"
             style="height: 20vh;"
         >   
             <div>
@@ -21,7 +21,7 @@ const publicPath = import.meta.env.BASE_URL
         </v-col>
         <v-col
             cols="2"
-            class="border d-flex align-center"
+            class="d-flex align-center"
             style="height: 20vh;"
         >   
             <div>
@@ -30,20 +30,24 @@ const publicPath = import.meta.env.BASE_URL
         </v-col>
         <v-col
             cols="3"
-            class="border d-flex flex-column align-center justify-center"
+            class="d-flex flex-column align-center justify-center"
             style="height: 20vh;"
         >
-            <div class="border">
-                <img :src="`${publicPath}icons/crown.svg`"  width="95px" height="80px">
+            <div>
+                <img v-if="useTopStore().topPresenter.value == true" :src="`${publicPath}icons/crown.svg`"  width="95px" height="80px">
+                <img v-else :src="`${publicPath}icons/clown.svg`"  width="95px" height="80px">
             </div>
-            <div class="number-round-block">
+            <div v-if="useTopStore().winner == null" class="number-round-block">
                 <p class="number-text" align="center"><b>{{ useTopStore().roundNumber }}/{{ useTopStore().roundSize }}</b></p>
+            </div>
+            <div v-else class="winner-block">
+                <p class="number-text" align="center"><b>ПОБЕДИТЕЛЬ</b></p>
             </div>
         
         </v-col>
         <v-col
             cols="2"
-            class="border d-flex align-center"
+            class="d-flex align-center"
             style="height: 20vh;"
         >   
             <div>
@@ -52,7 +56,7 @@ const publicPath = import.meta.env.BASE_URL
         </v-col>
         <v-col
             cols="2"
-            class="border d-flex align-center"
+            class="d-flex align-center"
             style="height: 20vh;"
         >   
             <div>
@@ -76,5 +80,12 @@ const publicPath = import.meta.env.BASE_URL
     font-family: "Roboto", sans-serif;
     font-weight: 900;
     font-style: normal;
+}
+
+.winner-block {
+    border: solid 3px;
+    border-radius: 40px;
+    background-color: white;
+    width: 300px;
 }
 </style>

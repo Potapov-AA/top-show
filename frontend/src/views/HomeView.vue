@@ -27,7 +27,7 @@ onBeforeMount(() => {
       <v-spacer/>
       <v-col
       cols="5"
-      class="border pt-7 pr-5"
+      class="pt-7 pr-5"
       style="height: 80vh;"
       >
         <CardComponent
@@ -38,14 +38,14 @@ onBeforeMount(() => {
       </v-col>
       <v-col
       cols="1"
-      class="border d-flex align-center justify-center"
+      class="d-flex align-center justify-center"
       style="height: 80vh;"
       >
         <p class="text-vs">VS</p>
       </v-col>
       <v-col
       cols="5"
-      class="border pt-7 pl-5"
+      class="pt-7 pl-5"
       style="height: 80vh;"
       >
         <CardComponent
@@ -60,11 +60,11 @@ onBeforeMount(() => {
       <v-col
         cols="5"
       >
-        <CardComponent
-        :name="useTopStore().winner.top.name"
-        :image-name="useTopStore().winner.top.imageName"
-        :half="-1"
-      />
+          <CardComponent
+            :name="useTopStore().winner.top.name"
+            :image-name="useTopStore().winner.top.imageName"
+            :half="-1"
+          />
     </v-col>
     </v-row>
   </div>
