@@ -6,9 +6,6 @@ const publicPath = import.meta.env.BASE_URL
 const props = defineProps({
   id: Number
 });
-
-
-
 </script>
 
 <template>

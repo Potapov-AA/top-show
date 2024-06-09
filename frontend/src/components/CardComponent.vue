@@ -13,18 +13,44 @@ function getImage(imageName) {
 </script>
 
 <template>
-  <v-card width="45vw" height="85vh" class="mr-5 ml-5">
-    <v-card-title class="text-center">
-      {{ props.name }}
-    </v-card-title>
-    <v-img
-      class="fill-height"
-      aspect-ratio="1/1"
-      cover
-      :src="getImage(props.imageName)"
-      @click="useTopStore().updateArray(props.half)"
-    />
-  </v-card>
+  <div class="border" style="height: 74vh;"> 
+    <div class="top-title-block" style="height: 6%;">
+      <p class="text-top-title" align="center">{{ props.name }}</p>
+    </div>
+    <div class="top-image-block d-flex" style="height: 94%;">
+      <v-img
+        aspect-ratio="1/1"
+        :src="getImage(props.imageName)"
+        @click="useTopStore().updateArray(props.half)"
+      />
+    </div>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.top-title-block {
+  border: solid 3px;
+  border-radius: 30px 30px 0px 0px;
+  background-color: white;
+  box-shadow: 0 10px 6px 1px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index:1;
+}
+
+.text-top-title {
+  font-size: 24px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.top-image-block {
+  border-right: solid 3px;
+  border-bottom: solid 3px;
+  border-left: solid 3px;
+  border-radius: 0px 0px 60px 60px;
+  background: white;
+  box-shadow: 5px 10px 6px 1px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+</style>

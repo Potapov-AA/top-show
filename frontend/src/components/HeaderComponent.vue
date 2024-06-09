@@ -3,6 +3,8 @@ import { useTopStore } from "@/stores/top";
 
 import PlayersComponent from "@/components/PlayersComponent.vue";
 
+const publicPath = import.meta.env.BASE_URL
+
 </script>
 
 <template>
@@ -28,13 +30,14 @@ import PlayersComponent from "@/components/PlayersComponent.vue";
         </v-col>
         <v-col
             cols="3"
-            class="d-flex flex-column align-center"
+            class="border d-flex flex-column align-center justify-center"
+            style="height: 20vh;"
         >
             <div class="border">
-                ffff
+                <img :src="`${publicPath}icons/crown.svg`"  width="95px" height="80px">
             </div>
-            <div class="border">
-                ffff
+            <div class="number-round-block">
+                <p class="number-text" align="center"><b>{{ useTopStore().roundNumber }}/{{ useTopStore().roundSize }}</b></p>
             </div>
         
         </v-col>
@@ -61,5 +64,17 @@ import PlayersComponent from "@/components/PlayersComponent.vue";
 </template>
 
 <style scoped>
+.number-round-block {
+    border: solid 3px;
+    border-radius: 40px;
+    background-color: white;
+    width: 150px;
+}
 
+.number-text {
+    font-size: 32px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
 </style>

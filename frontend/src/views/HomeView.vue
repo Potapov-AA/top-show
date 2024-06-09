@@ -20,60 +20,69 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="background h-screen d-flex flex-column">
+  <div class="background d-flex flex-column">
     <HeaderComponent/>
 
-
-    <div class="text-center mt-4 mb-4">
-      <h1 class="h1">ТОП ШОУ</h1>
-      <div v-if="useTopStore().winner == null">
-        <div>
-          {{ useTopStore().roundNumber }} / {{ useTopStore().roundSize }}
-        </div>
-        <!-- <PlayersComponent/> -->
-      </div>
-      <div v-else>
-        <div v-if="useTopStore().winner.player == null">
-          ПОБЕДИТЕЛЬ ИГРА
-        </div>
-        <div v-else>
-          ПОБЕДИТЕЛЬ {{ useTopStore().winner.player }}
-        </div>
-      </div>
-    </div>
-    <div
-      v-if="useTopStore().winner == null"
-      class="d-flex justify-center align-center"
-    >
-      <CardComponent
-        :name="useTopStore().firstHalf[0].name"
-        :image-name="useTopStore().firstHalf[0].imageName"
-        :half="1"
-      />
-      <div>
-        <h1>V.S.</h1>
-      </div>
-      <CardComponent
-        :name="useTopStore().secondHalf[0].name"
-        :image-name="useTopStore().secondHalf[0].imageName"
-        :half="2"
-      />
-    </div>
-    <div v-else class="d-flex justify-center align-center flex-column">
-      <CardComponent
+    <v-row v-if="useTopStore().winner == null">
+      <v-spacer/>
+      <v-col
+      cols="5"
+      class="border pt-7 pr-5"
+      style="height: 80vh;"
+      >
+        <CardComponent
+          :name="useTopStore().firstHalf[0].name"
+          :image-name="useTopStore().firstHalf[0].imageName"
+          :half="1"
+        />
+      </v-col>
+      <v-col
+      cols="1"
+      class="border d-flex align-center justify-center"
+      style="height: 80vh;"
+      >
+        <p class="text-vs">VS</p>
+      </v-col>
+      <v-col
+      cols="5"
+      class="border pt-7 pl-5"
+      style="height: 80vh;"
+      >
+        <CardComponent
+          :name="useTopStore().secondHalf[0].name"
+          :image-name="useTopStore().secondHalf[0].imageName"
+          :half="2"
+        />
+      </v-col>
+      <v-spacer/>
+    </v-row>
+    <v-row v-else class="d-flex justify-center ">
+      <v-col
+        cols="5"
+      >
+        <CardComponent
         :name="useTopStore().winner.top.name"
         :image-name="useTopStore().winner.top.imageName"
         :half="-1"
       />
-      <v-btn @click="useTopStore().startRound()" class="mt-5"
+    </v-col>
+    </v-row>
+  </div>
+  <v-btn @click="useTopStore().startRound()" class="mt-5"
         >НАЧАТЬ НОВУЮ ИГРУ</v-btn
       >
-    </div>
-  </div>
 </template>
 
 <style scoped>
   .background {
     background: linear-gradient(to bottom left, #32A0D1, #27AC99 62%, #C8C748);
+    height: 100vh;
+  }
+
+  .text-vs {
+    font-size: 128px;
+    font-family: "Palanquin Dark", sans-serif;
+    font-weight: 700;
+    font-style: normal;
   }
 </style>
